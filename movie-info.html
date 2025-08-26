@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'movie-info.css' %}" type="text/css">
+</head>
+<body>
+    <div id="nav-bar">
+        <h1>Movie Manager</h1>
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">
+                    <h2>Home</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'movies' %}">
+                    <h2>Movies</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'shows' %}">
+                    <h2>Shows</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'random-media' %}">
+                    <h2>Media Picker</h2>
+                </a>
+            </li>
+            <li>
+                <div id="search-div">
+                    <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+                        <input type="text" name="movie-title" id="search-bar" placeholder="Search for media">
+                        <button type="submit" id="search-btn">Search</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+<h1 id="title">{{media.title}} ({{media.year}})</h1>
+<h3>Rating: {{media.rating}}</h3>
+<img src="{{media.img_url}}">
+<div>
+    <p>{{media.summary}}</p>
+    <form action="{% url 'home' %}" method="POST">{% csrf_token %}
+        <div id="btns-div">
+        {% if media.is_watch_list == False %}
+        <button type="submit" name="{{media.title}},watch-list" id="watchlist-btn">Add to Watchlist</button>
+        {% else %}
+        <button type="submit" name="{{media.title}},no-watch-list" class="remove-btn">Remove from Watchlist</button>
+        {% endif %}
+        {% if media.alr_wat == False %}
+        <button type="submit" name="{{media.title}},add-alr-wat" id="alr-wat-btn">Add to Already Watched</button>
+        {% else %}
+        <button type="submit" name="{{media.title}},rem-alr-wat" class="remove-btn">Remove from Already Watched</button>
+        {% endif %}
+        {% if media.is_curr_wat == False %}
+        <button type="submit" name="{{media.title}},add-curr-wat" id="curr-wat-btn">Add to Currently Watching</button>
+        {% else %}
+        <button type="submit" name="{{media.title}},rem-curr-wat" class="remove-btn">Remove from Currently Watching</button>
+        {% endif %}
+        </div>
+    </form>
+</div>
+</body>

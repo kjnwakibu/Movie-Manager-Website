@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'list-info.css' %}" type="text/css">
+</head>
+<body>
+    <div id="nav-bar">
+        <h1>Movie Manager</h1>
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">
+                    <h2>Home</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'movies' %}">
+                    <h2>Movies</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'shows' %}">
+                    <h2>Shows</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'random-media' %}">
+                    <h2>Media Picker</h2>
+                </a>
+            </li>
+            <li>
+                <div id="search-div">
+                    <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+                        <input type="text" name="movie-title" id="search-bar" placeholder="Search for media">
+                        <button type="submit" id="search-btn">Search</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+<h1 id="title">
+    {% if genre == "alr-wat" %}
+        Already Watched
+    {% elif genre == "curr-wat" %}
+        Currently Watching
+    {% else %}
+        {{genre}} 
+    {% endif %}
+    {% if type != "both"%}
+    {{type.title}}s
+    {% endif %}
+</h1>
+<form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+    <div id="list-info-div">
+    {% for media in medias %}
+        <div class="img-div">
+        {% if genre == "Watchlist" and media.is_watch_list or genre == "alr-wat" and media.alr_wat or genre == "curr-wat" and media.is_curr_wat%}
+            {% if type == "movie" and media.type == "movie"%}
+            <img src="{{media.img_url}}">
+            <button type="submit" name="{{media.title}}">View info</button>
+            {% elif type == "both" %}
+            <img src="{{media.img_url}}">
+            <button type="submit" name="{{media.title}}">View info</button>
+            {% elif type == "show" and media.type == "show" %}
+            <img src="{{media.img_url}}">
+            <button type="submit" name="{{media.title}}" class="v-btn">View info</button>
+            {% endif %}
+        {% elif genre in media.genre and type == media.type %}
+        <img src="{{media.img_url}}">
+        <button type="submit" name="{{media.title}}">View info</button>
+        {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+</form>
+</body>

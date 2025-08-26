@@ -1,0 +1,95 @@
+body {
+    background-color: darkblue;
+    margin: 0px;
+}
+
+
+ul {
+    list-style-type: none;
+    display: flex;
+}
+
+#nav-bar {
+    display: flex;
+    background-color: black;
+}
+
+h1 {
+    padding-top: 8px;
+    padding-right: 60px;
+    color: white;
+}
+
+li {
+    padding-right: 70px;
+}
+
+h2 {
+    color: white;
+}
+
+#search-div {
+    margin-top: 22px;
+    margin-left: 150px;
+}
+
+#search-bar {
+    height: 25px;
+    width: 200px;
+}
+
+#search-btn {
+    height: 30px;
+}
+
+p {
+    color: white;
+    text-align: center;
+}
+
+img {
+    height: 400px;
+    display: block; /* Important: Images are inline by default, make them block-level */
+    margin: 0 auto;
+}
+
+#btns-div {
+    display: flex;
+    gap: 80px;
+    margin-top: 50px;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;
+}
+
+#title {
+    text-align: center;
+    padding-right: 0px;
+}
+
+#btns-div > button {
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    border: 3px solid black;
+}
+
+#watchlist-btn {
+    background-color: green;
+}
+
+#alr-wat-btn {
+    background-color: purple;
+}
+
+#curr-wat-btn {
+    background: brown;
+}
+
+.remove-btn {
+    background-color: red;
+}
+
+h3 {
+    text-align: center;
+    color: white;
+}

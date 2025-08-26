@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}" type="text/css">
+</head>
+
+<body>
+    <div id="nav-bar">
+        <h1>Movie Manager</h1>
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">
+                    <h2>Home</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'movies' %}">
+                    <h2>Movies</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'shows' %}">
+                    <h2>Shows</h2>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'random-media' %}">
+                    <h2>Media Picker</h2>
+                </a>
+            </li>
+            <li>
+                <div id="search-div">
+                    <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+                        <input type="text" name="movie-title" id="search-bar" placeholder="Search for media">
+                        <button type="submit" id="search-btn">Search</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="list-title">
+        <div class="list-header-div">
+            <h2>Watchlist</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Watchlist,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in watchlist_shows %}
+                    {% if media.type == "show" and media.is_watch_list == True %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="list-header-div">
+            <h2>Already Watched</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="alr-wat,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in alr_wat_shows %}
+                    {% if media.type == "show" and media.alr_wat == True %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+
+    <div class="list-title">
+        <div class="list-header-div">
+            <h2>Currently Watching</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="curr-wat,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in curr_wat_shows %}
+                    {% if media.type == "show" and media.is_curr_wat == True %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Drama</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Drama,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in drama_shows %}
+                    {% if "Drama" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Thriller</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Thriller,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in thriller_shows %}
+                    {% if "Thriller" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Crime</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Crime,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in crime_shows %}
+                    {% if "Crime" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Adventure</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Adventure,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in adventure_shows %}
+                    {% if "Adventure" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Romance</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Romance,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+        {% for media in romance_shows %}
+            {% if "Romance" in media.genre and media.type == "show" %}
+            <div class="img-btn-div">
+                <img src="{{media.img_url}}">
+                <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+            </div>
+            {% endif %}
+        {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Sci-Fi</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Sci-Fi,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in scifi_shows %}
+                    {% if "Sci-Fi" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Mystery</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Mystery,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in mystery_shows %}
+                    {% if "Mystery" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+            <h2>Comedy</h2>
+            <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+                <button type="submit" name="Comedy,show" class="view-list-btn">View more</button>
+            </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in comedy_shows %}
+                    {% if "Comedy" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                        <img src="{{media.img_url}}">
+                        <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="list-title">
+        <div class="imgs-div">
+        <h2>Fantasy</h2>
+        <form action="{% url 'list-info' %}" method="POST"> {% csrf_token %}
+            <button type="submit" name="Fantasy,show" class="view-list-btn">View more</button>
+        </form>
+        </div>
+        <form action="{% url 'movie-info' %}" method="POST">{% csrf_token %}
+            <div class="imgs-div">
+                {% for media in fantasy_shows %}
+                    {% if "Fantasy" in media.genre and media.type == "show" %}
+                    <div class="img-btn-div">
+                    <img src="{{media.img_url}}">
+                    <button type="submit" name="{{media.title}}" class="img-btn">View info</button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+    </form>
+</body>

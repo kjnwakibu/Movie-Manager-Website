@@ -1,0 +1,39 @@
+body {
+    background-color: darkblue;
+    margin: 0px;
+}
+
+
+ul {
+    list-style-type: none;
+    display: flex;
+}
+
+#nav-bar {
+    display: flex;
+    background-color: black;
+}
+
+h1 {
+    padding-top: 8px;
+    padding-right: 100px;
+    color: white;
+}
+
+li {
+    padding-right: 90px;
+}
+
+h2 {
+    color: white;
+}
+
+.list-title {
+    margin: 100px;
+}
+
+img {
+    width: 150px;
+    height: 300px;
+    margin-right: 20px;
+}

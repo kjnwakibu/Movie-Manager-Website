@@ -1,0 +1,101 @@
+body {
+    background-color: darkblue;
+    margin: 0px;
+}
+
+
+ul {
+    list-style-type: none;
+    display: flex;
+}
+
+#nav-bar {
+    display: flex;
+    background-color: black;
+    
+}
+
+h1 {
+    padding-top: 8px;
+    padding-right: 60px;
+    color: white;
+}
+
+li {
+    padding-right: 70px;
+}
+
+h2 {
+    color: white;
+}
+
+.list-title {
+    margin: 100px;
+}
+
+
+img {
+    width: 150px;
+    height: 300px;
+    /* margin-right: 20px; */
+    padding: 20px;
+}
+
+#search-div {
+    margin-top: 22px;
+    margin-left: 150px;
+}
+
+#search-bar {
+    height: 25px;
+    width: 200px;
+}
+
+#search-btn {
+    height: 30px;
+}
+
+.list-header-div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.view-list-btn {
+    margin-top: 23px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.img-btn-div {
+    display: flex;
+    flex-direction: column;
+    /* background-color: grey; */
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5); /* Horizontal, vertical, blur, color with opacity */
+}
+
+
+.img-btn {
+    width: 90px;
+    margin-left: 50px;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    border: 3px solid black;
+}
+
+.imgs-div {
+    display: flex;
+    gap: 60px;
+}
+
+
+
+
+
+
+
+
+
+
